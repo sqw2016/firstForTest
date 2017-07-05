@@ -62,6 +62,7 @@ var VIEWWIDTH = document.body.scrollWidth,//视口宽度
 	IMGWIDTH = 190,//图片宽度
 	IMGHEIGHT = 290;//图片高度
 
+/*画廊墙壁*/
 class GalleryWall extends React.Component {
 	/*初始化图片状态*/
 	constructor() {
@@ -151,19 +152,30 @@ class GalleryWall extends React.Component {
 	render() {
 		var imgArr = this.state.imgStateDatas;
 		var me = this;
+		var picComponents = [],
+			controllerComponents = [];
+		imgArr.forEach(function(obj, index){
+			picComponents.push(<Picture key={index} data={obj} clickFun={me.clickPicture(index)} />);
+			controllerComponents.push(<Controller key={index} data={obj} clickFun={me.clickPicture(index)} />);
+		});
 		return (
 			<div className="galleryContain">
 				{
-					imgArr.map(function(obj, index){
-						return (<Picture key={index} data={obj} clickFun={me.clickPicture(index)} />);
-					})
+					picComponents
 				}
-				<nav></nav>
+				<nav className="control-nav">
+					<ul>
+						{
+							controllerComponents
+						}
+					</ul>
+				</nav>
 			</div>
 		);
 	}
 }
 
+/*画*/
 class Picture extends React.Component{
 	render() {
 		var picFigClass = 'picFigure';
@@ -192,6 +204,22 @@ class Picture extends React.Component{
 	}
 }
 
+/*控制按钮*/
+class Controller extends React.Component {
+	render() {
+		var styleObj = {};
+		if (this.props.data.isCenter) {//中间图片的控制按钮放大2倍
+			styleObj.transform = "scale(1.5)";
+		}
+		if (this.props.data.isInverse) {
+			styleObj.background = "#101010";
+			styleObj.transform += " rotateY(180deg)";
+		}
+		return(
+			<li key={this.props.data.index} style={styleObj} onClick={this.props.clickFun} >{this.props.data.index+1}</li>
+		);
+	}
+}
 GalleryWall.defaultProps = {}
 
 export default GalleryWall;
