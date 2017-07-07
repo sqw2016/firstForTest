@@ -96,17 +96,17 @@ class GalleryWall extends React.Component {
 				imgsState[index].isInverse = false;//图片是否翻转
 				imgsState[index].isCenter = true;//是否是中心图片
 
-			} else {//非中心图片处理，只放置一张图片
+			} else {//非中心图片处理，中心图片正上方最多只放置一张图片
 				if (!upNum && Math.random() > 0.5) {
 					imgsState[index].rotate = me.getDesignatedRandom(-30, 30);//旋转角度为-30到30
 					imgsState[index].left = me.getDesignatedRandom((VIEWWIDTH/2 - IMGWIDTH), (VIEWWIDTH/2 + IMGWIDTH));//中轴线左右各一张图片的距离
-					imgsState[index].top = me.getDesignatedRandom(-IMGHEIGHT/2, (VIEWHEIGHT/2 - IMGHEIGHT));//负半张图片高度到距离中轴线一张图片
+					imgsState[index].top = me.getDesignatedRandom(-IMGHEIGHT/2, (VIEWHEIGHT/2 - 3*IMGHEIGHT/2));//负半张图片高度到距离中轴线一张图片
 					imgsState[index].isInverse = false;//图片是否翻转
 					imgsState[index].isCenter = false;//是否是中心图片
 					upNum ++;
 				} else if (leftNum < (len-2)/2 && Math.random() > 0.5) {/*左侧区域图片*/
 					imgsState[index].rotate = me.getDesignatedRandom(-30, 30);//旋转角度为-30到30
-					imgsState[index].left = me.getDesignatedRandom(-IMGWIDTH/2, (VIEWWIDTH/2 - 3*IMGWIDTH/2));//负半张图片宽度到距离中轴线一张图片的距离
+					imgsState[index].left = me.getDesignatedRandom(-IMGWIDTH/2, (VIEWWIDTH/2 - 3*IMGWIDTH/2));//负半张图片宽度到距离中轴线一张半图片的距离
 					imgsState[index].top = me.getDesignatedRandom(-IMGHEIGHT/2, (VIEWHEIGHT - IMGHEIGHT));//负半张图片高度到距离底部半张图片高度
 					imgsState[index].isInverse = false;//图片是否翻转
 					imgsState[index].isCenter = false;//是否是中心图片
@@ -114,7 +114,7 @@ class GalleryWall extends React.Component {
 
 				} else {//右侧图片
 					imgsState[index].rotate = me.getDesignatedRandom(-30, 30);//旋转角度为-30到30
-					imgsState[index].left = me.getDesignatedRandom((VIEWWIDTH/2 + IMGWIDTH), (VIEWWIDTH - 3*IMGWIDTH/2));//负半张图片宽度到距离中轴线一张图片的距离
+					imgsState[index].left = me.getDesignatedRandom((VIEWWIDTH/2 + IMGWIDTH), (VIEWWIDTH - 3*IMGWIDTH/2));//负半张图片宽度到距离中轴线一张半图片的距离
 					imgsState[index].top = me.getDesignatedRandom(-IMGHEIGHT/2, (VIEWHEIGHT - IMGHEIGHT));//负半张图片高度到距离底部半张图片高度
 					imgsState[index].isInverse = false;//图片是否翻转
 					imgsState[index].isCenter = false;//是否是中心图片

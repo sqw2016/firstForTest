@@ -22,6 +22,7 @@ html,body {
   position: absolute;
   background-color: #fff;
   z-index: 1;
+  cursor: pointer;
   text-align: center;
   transform-style: preserve-3d;/*如果子元素存在层叠情况，需要在父容器中设置这个属性，才能实现反转显示*/
   box-sizing: border-box;
@@ -77,6 +78,7 @@ html,body {
   width: 30px;
   line-height: 30px;
   height: 30px;
+  cursor: pointer;
   border-radius: 50%;
   background: #686868;
   text-align: center;
